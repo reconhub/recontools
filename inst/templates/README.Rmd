@@ -1,0 +1,63 @@
+
+```{{r echo = FALSE}}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width=8,
+  fig.height=6,
+  fig.path="figs/",
+  echo = TRUE
+)
+
+```
+
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/{pkg_name})](https://cran.r-project.org/package={pkg_name})
+
+# Welcome to the *{pkg_name}* package!
+
+This is just a template. Please remove, add or edit parts as you see fit.
+
+## Installing the package
+
+To install the current stable, CRAN version of the package, type:
+```{{r install, eval = FALSE}}
+install.packages("{pkg_name}")
+```
+
+To benefit from the latest features and bug fixes, install the development, *github* version of the package using:
+```{{r install2, eval = FALSE}}
+devtools::install_github("<github_username>/{pkg_name}")
+```
+
+Note that this requires the package *devtools* installed.
+
+
+# What does it do?
+
+The main features of the package include:
+
+
+
+# Resources
+
+## Vignettes
+
+An overview and examples of *{pkg_name}* are provided in the vignettes:
+
+...
+
+## Websites
+
+The following websites are available:
+
+...
+
+## Getting help online
+
+Bug reports and feature requests should be posted on *github* using the [*issue*](http://github.com/reconhub/epicontacts/issues) system. All other questions should be posted on the **RECON forum**: <br>
+[http://www.repidemicsconsortium.org/forum/](http://www.repidemicsconsortium.org/forum/)
+
+Contributions are welcome via **pull requests**.
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
