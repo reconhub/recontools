@@ -3,7 +3,7 @@ Title: Tools for RECON Package Development
 Version: 0.0.0.9000
 Authors@R: person("Dirk", "Schumacher", email = "mail@dirk-schumacher.net", role = c("aut", "cre"))
 Description: Just that.
-Depends: R (>= 3.4.0)
+Depends: R (>= 3.2.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
