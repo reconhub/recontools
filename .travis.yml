@@ -1,15 +1,17 @@
 language: r
 cache: packages
-r:
-  - release
-  - devel
-  - oldrel
 
 matrix:
   include:
     - os: linux
       dist: trusty
-      env: R_CODECOV=true
+      env: R_CODECOV=true R_VERSION=stable
+    - os: linux
+      dist: trusty
+      env: R_VERSION=devel
+    - os: linux
+      dist: trusty
+      env: R_VERSION=oldrel
     - os: osx
       osx_image: xcode8.3
 
@@ -25,4 +27,4 @@ notifications:
     on_failure: change
 
 after_success:
-  - if [[ "${R_CODECOV}" ]]; then R -e 'covr::codecov()'; fi
+  - if [[ "${{R_CODECOV}}" ]]; then R -e 'covr::codecov()'; fi
