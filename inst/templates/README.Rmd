@@ -45,7 +45,7 @@ The following websites are available:
 
 ## Getting help online
 
-Bug reports and feature requests should be posted on *github* using the [*issue*](http://github.com/reconhub/epicontacts/issues) system. All other questions should be posted on the **RECON forum**: <br>
+Bug reports and feature requests should be posted on *github* using the [*issue*](http://github.com/reconhub/{pkg_name}/issues) system. All other questions should be posted on the **RECON forum**: <br>
 [http://www.repidemicsconsortium.org/forum/](http://www.repidemicsconsortium.org/forum/)
 
 Contributions are welcome via **pull requests**.
