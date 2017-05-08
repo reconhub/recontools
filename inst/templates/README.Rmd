@@ -1,15 +1,6 @@
-
-```{{r echo = FALSE}}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.width=8,
-  fig.height=6,
-  fig.path="figs/",
-  echo = TRUE
-)
-
-```
+---
+output: github_document
+---
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/{pkg_name})](https://cran.r-project.org/package={pkg_name})
 
