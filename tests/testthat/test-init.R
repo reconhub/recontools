@@ -1,10 +1,10 @@
 context("init")
 test_that("creates a default skeleton", {
-  path <- tempdir()
-  unlink(file.path(path, "*"), recursive = TRUE)
+  path <- new_tempdir()
   expect_message(init_package("mypackage", path))
   expect_exists(file.path(path, ".git"))
   expect_exists(file.path(path, "tests"))
+  expect_exists(file.path(path, "tests", "testthat", "test-example.R"))
   expect_exists(file.path(path, "DESCRIPTION"))
   expect_exists(file.path(path, "R", "please-change.R"))
   expect_exists(file.path(path, "man", "hello_recon.Rd"))
@@ -21,7 +21,7 @@ test_that("creates a default skeleton", {
 })
 
 test_that("check if name is already taken on CRAN", {
-  path <- tempdir()
+  path <- new_tempdir()
   unlink(file.path(path, "*"), recursive = TRUE)
   expect_error(init_package("Rcpp", path))
 })

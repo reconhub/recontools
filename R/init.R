@@ -98,6 +98,9 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   if (!dir.exists(file.path(path, "tests"))) {
     message("* Add testthat")
     suppressMessages(devtools::use_testthat(pkg = path))
+    write_template("test-example.R",
+                   path = file.path(path, "tests", "testthat"),
+                   use_glue = FALSE)
   }
 
   # code of conduct
@@ -176,6 +179,9 @@ ask <- function(prompt, type_fun = as.character) {
 }
 
 ask_yesno <- function(prompt, default = "y") {
+  if (!interactive()) {
+    return(TRUE)
+  }
   response <- tolower(ask(paste0(prompt, " [Y/N]:")))
   (if (nchar(response) == 0) default else response) == "y"
 }

@@ -4,6 +4,8 @@
 Tools to develop RECON packages
 ===============================
 
+This is currently work in progress.
+
 Installation
 ------------
 
@@ -41,7 +43,7 @@ In case you want to create a new package from the command line, run:
 
     Rscript -e "recontools::init_package('mynewpackage')"
 
-Please note that this creates all optional components (like the MIT license).
+Please note that using `Rscript` creates all optional components (like the MIT license) without asking.
 
 `init_package` currently does the following:
 
@@ -62,3 +64,27 @@ Please note that this creates all optional components (like the MIT license).
 -   Runs `devtools::document()` at the end
 
 ### Package checks
+
+You can also run package checks for a given package.
+
+``` r
+# from within your session in a package directory
+recontools::check_package()
+
+# to enable goodpractice::gp checks do
+recontools::check_package(run_gp = TRUE)
+```
+
+Currently, `check_package` does the following:
+
+``` r
+recontools::check_package(run_gp = FALSE)
+#> Running RECON specific tests:
+#>    x Packages should have at least one rmarkdown vignette
+#>    ✓ Packages should not import functions in NAMESPACE but use :: instead
+#>    ✓ Packages should have a NEWS.md file
+#>    ✓ Packages should have tests
+#> 
+#> Consider fixing the issues identified above.
+#> However, your package is already remarkable!
+```

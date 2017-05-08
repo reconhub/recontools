@@ -9,5 +9,5 @@ Encoding: UTF-8
 LazyData: true
 Suggests: testthat, roxygen2
 RoxygenNote: 6.0.1
-Url: https://localhost/{pkg_name}
+URL: https://localhost/{pkg_name}
 BugReports: https://localhost/bugtracker/{pkg_name}
