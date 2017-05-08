@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/reconhub/recontools.svg?branch=master)](https://travis-ci.org/reconhub/recontools) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/reconhub/recontools?branch=master&svg=true)](https://ci.appveyor.com/project/reconhub/recontools) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/recontools)](https://cran.r-project.org/package=recontools)
+[![Build Status](https://travis-ci.org/reconhub/recontools.svg?branch=master)](https://travis-ci.org/reconhub/recontools) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/reconhub/recontools?branch=master&svg=true)](https://ci.appveyor.com/project/reconhub/recontools) [![Coverage Status](https://img.shields.io/codecov/c/github/reconhub/recontools/master.svg)](https://codecov.io/github/reconhub/recontools?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/recontools)](https://cran.r-project.org/package=recontools)
 
 Tools to develop RECON packages
 ===============================
