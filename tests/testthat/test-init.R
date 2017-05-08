@@ -8,6 +8,7 @@ test_that("creates a default skeleton", {
   expect_exists(file.path(path, "DESCRIPTION"))
   expect_exists(file.path(path, "R", "please-change.R"))
   expect_exists(file.path(path, "man", "hello_recon.Rd"))
+  expect_exists(file.path(path, "vignettes", "introduction.Rmd"))
   expect_exists(file.path(path, "README.Rmd"))
   expect_exists(file.path(path, "CONDUCT.md"))
   expect_exists(file.path(path, ".travis.yml"))
