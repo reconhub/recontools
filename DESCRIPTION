@@ -7,7 +7,7 @@ Depends: R (>= 3.2.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Suggests: testthat
 Imports: devtools, git2r, readr, 
-  glue, praise, utils, roxygen2
+  glue, praise, utils, roxygen2,
+  testthat, covr
 RoxygenNote: 6.0.1
