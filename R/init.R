@@ -36,7 +36,12 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   file_exists <- function(file) {
     file.exists(file.path(path, file))
   }
-  create_dir(file.path(path, "R"))
+  r_source_path <- file.path(path, "R")
+  create_dir(r_source_path)
+  no_previous_r_files <- length(list.files(r_source_path)) == 0
+  if (no_previous_r_files) {
+    write_template("please-change.R", r_source_path, use_glue = FALSE)
+  }
 
   # add a default Rbuildignore
   write_template("Rbuildignore", path,
@@ -105,8 +110,10 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   message("All done! ", praise::praise())
 }
 
-write_template <- function(tpl_name, path, parameters = list(),
-                           local_name = tpl_name) {
+write_template <- function(tpl_name, path,
+                           parameters = list(),
+                           local_name = tpl_name,
+                           use_glue = TRUE) {
   if (file.exists(file.path(path, local_name))) {
     return()
   }
@@ -116,7 +123,11 @@ write_template <- function(tpl_name, path, parameters = list(),
   tpl_content <- readr::read_file(tpl_path)
   param_envir <- as.environment(parameters)
   parent.env(param_envir) <- environment()
-  tpl_content <- glue::glue(tpl_content, .envir = param_envir)
+  tpl_content <- if (use_glue) {
+    glue::glue(tpl_content, .envir = param_envir)
+  } else {
+    tpl_content
+  }
   invisible(writeLines(tpl_content, file.path(path, local_name)))
 }
 
