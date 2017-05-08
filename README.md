@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/reconhub/recontools.svg?branch=master)](https://travis-ci.org/reconhub/recontools) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/reconhub/recontools?branch=master&svg=true)](https://ci.appveyor.com/project/reconhub/recontools) [![Coverage Status](https://img.shields.io/codecov/c/github/reconhub/recontools/master.svg)](https://codecov.io/github/reconhub/recontools?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/recontools)](https://cran.r-project.org/package=recontools)
+[![Build Status](https://travis-ci.org/reconhub/recontools.svg?branch=master)](https://travis-ci.org/reconhub/recontools) [![Build status](https://ci.appveyor.com/api/projects/status/wn4un3v2e3owts4l/branch/master?svg=true)](https://ci.appveyor.com/project/dirkschumacher/recontools/branch/master) [![Coverage Status](https://img.shields.io/codecov/c/github/reconhub/recontools/master.svg)](https://codecov.io/github/reconhub/recontools?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/recontools)](https://cran.r-project.org/package=recontools)
 
 Tools to develop RECON packages
 ===============================
@@ -86,5 +86,5 @@ recontools::check_package(run_gp = FALSE)
 #>    ✓ Packages should have tests
 #> 
 #> Consider fixing the issues identified above.
-#> However, your package is already remarkable!
+#> However, your package is already wicked!
 ```
