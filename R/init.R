@@ -31,10 +31,11 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
 
   # check git
   if (!git2r::in_repository(path)) {
-    message("Initializing git repository")
+    message("* Initializing git repository")
     git2r::init(path = path)
 
     # add a default gitignore
+    message("* Add default .gitignore")
     write_template("gitignore", path,
                    list(pkg_name = pkg_name),
                    local_name = ".gitignore")
@@ -46,17 +47,19 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   create_dir(r_source_path)
   no_previous_r_files <- length(list.files(r_source_path)) == 0
   if (no_previous_r_files) {
+    message("* Add sample R file")
     write_template("please-change.R", r_source_path, use_glue = FALSE)
   }
 
   # add a default Rbuildignore
+  message("* Add .Rbuildignore")
   write_template("Rbuildignore", path,
                  list(pkg_name = pkg_name),
                  local_name = ".Rbuildignore")
 
   # create description
   if (!file_exists("DESCRIPTION")) {
-    message("* Adding DESCRIPTION")
+    message("* Add DESCRIPTION")
     current_r_version <- paste0(R.Version()$major, ".",
                                 R.Version()$minor)
     write_template("DESCRIPTION", path,
@@ -70,40 +73,61 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
     devtools::use_mit_license(path)
   }
 
+  if (ask_yesno("Add a vignette?")) {
+    handle_answer <- function(x) {
+      if (nchar(x) == 0) {
+        message("* No answer given, calling vignette 'introduction'")
+        "introduction"
+      } else {
+        x
+      }
+    }
+    while(!valid_name(vignette_name <-
+                      ask("Please enter a name for the vignette:", type_fun = handle_answer))) {
+
+    }
+    if (!file.exists(file.path(path, "vignettes", paste0(vignette_name, ".Rmd")))) {
+      devtools::use_vignette(vignette_name, pkg = path)
+    } else {
+      message("* Vignette with name '", vignette_name,
+              "' already present => No new vignette created")
+    }
+  }
+
   # create tests
   if (!dir.exists(file.path(path, "tests"))) {
-    message("* Adding testthat")
+    message("* Add testthat")
     suppressMessages(devtools::use_testthat(pkg = path))
   }
 
   # code of conduct
   if (!file_exists("CONDUCT.md")) {
-    message("* Adding CONDUCT.md from devtools")
+    message("* Add CONDUCT.md from devtools")
     suppressMessages(devtools::use_code_of_conduct(pkg = path))
   }
 
   # create readme
   if (!file_exists("README.Rmd")) {
-    message("* Adding README.Rmd from template")
+    message("* Add README.Rmd from template")
     write_template("README.Rmd", path, list(pkg_name = pkg_name))
   }
 
   if (!file_exists(".travis.yml") &&
       ask_yesno("Add travis CI?")) {
-    message("* Adding .travis.yml from template")
+    message("* Add .travis.yml from template")
     write_template("travis.yml", path, list(pkg_name = pkg_name),
                    local_name = ".travis.yml")
   }
 
   if (!file_exists("appveyor.yml") &&
       ask_yesno("Add appveyor CI?")) {
-    message("* Adding appveyor.yml from template")
+    message("* Add appveyor.yml from template")
     write_template("appveyor.yml", path,
                    list(pkg_name = pkg_name))
   }
 
   if (!file_exists(".lintr")) {
-    message("* Adding .lintr file")
+    message("* Add .lintr file")
     write_template("lintr", path, local_name = ".lintr")
   }
 
@@ -138,7 +162,7 @@ write_template <- function(tpl_name, path,
 }
 
 valid_name <- function(name) {
-  all(grepl(pattern = "^[a-zA-Z]+[a-zA-Z0-9\\.]*$", x = name))
+  length(name) == 1 && grepl(pattern = "^[a-zA-Z]+[a-zA-Z0-9\\.]*$", x = name)
 }
 
 create_dir <- function(path) {
