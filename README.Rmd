@@ -65,11 +65,11 @@ Please note that this creates all optional components (like the MIT license).
 * Adds `testthat` tests
 * Adds a code of conduct (from the `devtools` package)
 * Creates a default `README.Rmd`
+* Creates a sample vignette (using the `devtools` package)
 * Adds travis CI + codecov (asks for it)
 * Adds appveyor (asks for it)
 * Adds a default `.lintr` file
 * Adds a `NEWS.md` file
 * Runs `devtools::document()` at the end
-
 
 ### Package checks
