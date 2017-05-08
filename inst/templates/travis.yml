@@ -4,13 +4,12 @@ cache: packages
 matrix:
   include:
     - os: linux
-      dist: trusty
-      env: R_CODECOV=true R_VERSION=stable
+      env:
+        - R_CODECOV=true
+        - R_VERSION=stable
     - os: linux
-      dist: trusty
       env: R_VERSION=devel
     - os: linux
-      dist: trusty
       env: R_VERSION=oldrel
     - os: osx
       osx_image: xcode8.3
