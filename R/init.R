@@ -4,9 +4,15 @@
 #' @param check_cran_name check if the name is already taken on CRAN
 #' @export
 init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
+  if (length(pkg_name) != 1 || !is.character(pkg_name)) {
+    stop("Package name needs to be a character vector of length 1",
+         call. = FALSE)
+  }
   if (!valid_name(pkg_name)) {
     stop("Package name is not valid", call. = FALSE)
   }
+  stopifnot(dir.exists(path))
+  stopifnot(is.logical(check_cran_name), length(check_cran_name) == 1)
 
   # check if the name is already taken
   if (check_cran_name) {
@@ -132,7 +138,7 @@ write_template <- function(tpl_name, path,
 }
 
 valid_name <- function(name) {
-  all(grepl(pattern = "^[a-zA-Z0-9\\.]+$", x = name))
+  all(grepl(pattern = "^[a-zA-Z]+[a-zA-Z0-9\\.]*$", x = name))
 }
 
 create_dir <- function(path) {

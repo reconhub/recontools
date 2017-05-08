@@ -24,3 +24,11 @@ test_that("check if name is already taken on CRAN", {
   unlink(file.path(path, "*"), recursive = TRUE)
   expect_error(init_package("Rcpp", path))
 })
+
+test_that("it fails if the pkg name is not valid", {
+  expect_error(init_package("", path))
+  expect_error(init_package(c("wat", "wat2"), path))
+  expect_error(init_package("asd_asd", path))
+  expect_error(init_package("asd asd", path))
+  expect_error(init_package("123123asd", path))
+})
