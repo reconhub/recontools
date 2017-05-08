@@ -4,7 +4,7 @@
 \alias{check_package}
 \title{Performes various checks}
 \usage{
-check_package(path = ".", run_gp = TRUE)
+check_package(path = ".", run_gp = FALSE)
 }
 \arguments{
 \item{path}{the path to the package}
