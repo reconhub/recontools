@@ -96,7 +96,7 @@ check_bugreports <- function(package) {
 check_news_file <- function(package) {
   path <- package$path
   ok <- file.exists(file.path(path, "NEWS.md"))
-  message_test(ok, paste0("Packages should have a NEWS.md file"))
+  message_test(ok, "Packages should have a NEWS.md file")
   ok
 }
 
@@ -114,20 +114,20 @@ check_snake_case <- function(package) {
 check_tests <- function(package) {
   path <- package$path
   ok <- dir.exists(file.path(path, "tests"))
-  message_test(ok, paste0("Packages should have tests"))
+  message_test(ok, "Packages should have tests")
   ok
 }
 
 check_conduct <- function(package) {
   path <- package$path
   ok <- file.exists(file.path(path, "CONDUCT.md"))
-  message_test(ok, paste0("Packages should have a CONDUCT.md file"))
+  message_test(ok, "Packages should have a CONDUCT.md file")
   ok
 }
 
 check_roxygen2 <- function(package) {
   ok <- !is.null(package$roxygennote)
-  message_test(ok, paste0("Packages should use roxygen2"))
+  message_test(ok, "Packages should use roxygen2")
   ok
 }
 
