@@ -31,7 +31,8 @@ check_package <- function(path = ".", run_gp = FALSE) {
     check_roxygen2,
     check_snake_case,
     check_url,
-    check_bugreports
+    check_bugreports,
+    check_docs
   )
   ok <- Reduce("&", Map(function(f) f(package), checks))
 
@@ -121,6 +122,20 @@ check_conduct <- function(package) {
 check_roxygen2 <- function(package) {
   ok <- !is.null(package$roxygennote)
   message_test(ok, "Packages should use roxygen2")
+}
+
+check_docs <- function(package) {
+  path <- package$path
+  ok <- dir.create(file.path(path, "docs"))
+  if (!ok) {
+    # check if git branch exists
+    if (git2r::in_repository(path)) {
+      repo <- git2r::repository(path)
+      branches <- git2r::branches(repo, flags = "local")
+      ok <- any(vapply(branches, function(x) x@name == "gh-pages", logical(1)))
+    }
+  }
+  message_test(ok, "Packages should have a docs folder or a gh-pages branch.")
 }
 
 message_test <- function(result, text) {
