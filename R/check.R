@@ -22,6 +22,7 @@ check_package <- function(path = ".", run_gp = FALSE) {
     message("")
   }
   message("Running RECON specific tests:")
+
   ok <- check_at_least_one_markdown_vignette(package)
 
   ok <- ok & check_no_imports(package)
@@ -31,6 +32,8 @@ check_package <- function(path = ".", run_gp = FALSE) {
   ok <- ok & check_tests(package)
 
   ok <- ok & check_roxygen2(package)
+
+  ok <- ok & check_snake_case(package)
 
   message("")
   if (!ok) {
@@ -77,6 +80,17 @@ check_news_file <- function(package) {
   path <- package$path
   ok <- file.exists(file.path(path, "NEWS.md"))
   message_test(ok, paste0("Packages should have a NEWS.md file"))
+  ok
+}
+
+check_snake_case <- function(package) {
+  path <- package$path
+  ok <- file.exists(file.path(path, "NAMESPACE"))
+  if (ok) {
+    ns <- devtools::parse_ns_file(package)
+    ok <- !any(grepl(x = ns$exports, pattern = ".", fixed = TRUE))
+  }
+  message_test(ok, "Packages should use snake case in exported functions")
   ok
 }
 
