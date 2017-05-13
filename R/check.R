@@ -138,7 +138,7 @@ check_appveyor <- function(package) {
 
 check_docs <- function(package) {
   path <- package$path
-  ok <- dir.create(file.path(path, "docs"))
+  ok <- dir.exists(file.path(path, "docs"))
   if (!ok) {
     # check if git branch exists
     if (git2r::in_repository(path)) {
