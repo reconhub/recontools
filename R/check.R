@@ -32,7 +32,9 @@ check_package <- function(path = ".", run_gp = FALSE) {
     check_snake_case,
     check_url,
     check_bugreports,
-    check_docs
+    check_docs,
+    check_travis,
+    check_appveyor
   )
   ok <- Reduce("&", Map(function(f) f(package), checks))
 
@@ -122,6 +124,16 @@ check_conduct <- function(package) {
 check_roxygen2 <- function(package) {
   ok <- !is.null(package$roxygennote)
   message_test(ok, "Packages should use roxygen2")
+}
+
+check_travis <- function(package) {
+  ok <- file.exists(file.path(package$path, ".travis.yml"))
+  message_test(ok, "Packages should use travis CI for Linux/Mac testing")
+}
+
+check_appveyor <- function(package) {
+  ok <- file.exists(file.path(package$path, ".travis.yml"))
+  message_test(ok, "Packages should use appveyor CI for Windows testing")
 }
 
 check_docs <- function(package) {
