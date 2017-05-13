@@ -60,7 +60,6 @@ check_at_least_one_markdown_vignette <- function(package) {
   vignettes <- list.files(vignette_path, pattern = "\\.Rmd$")
   ok <- length(vignettes) > 0
   message_test(ok, "Packages should have at least one rmarkdown vignette")
-  ok
 }
 
 check_no_imports <- function(package) {
@@ -81,7 +80,6 @@ check_url <- function(package) {
     length(package$url) == 1 &&
     nchar(package$url) > 0
   message_test(ok, "Packages should have a URL in the DESCRIPTION")
-  ok
 }
 
 check_bugreports <- function(package) {
@@ -90,14 +88,12 @@ check_bugreports <- function(package) {
     nchar(package$bugreports) > 0
   msg <- "Packages should have a URL for bugreports in the DESCRIPTION"
   message_test(ok, msg)
-  ok
 }
 
 check_news_file <- function(package) {
   path <- package$path
   ok <- file.exists(file.path(path, "NEWS.md"))
   message_test(ok, "Packages should have a NEWS.md file")
-  ok
 }
 
 check_snake_case <- function(package) {
@@ -108,35 +104,32 @@ check_snake_case <- function(package) {
     ok <- !any(grepl(x = ns$exports, pattern = ".", fixed = TRUE))
   }
   message_test(ok, "Packages should use snake case in exported functions")
-  ok
 }
 
 check_tests <- function(package) {
   path <- package$path
   ok <- dir.exists(file.path(path, "tests"))
   message_test(ok, "Packages should have tests")
-  ok
 }
 
 check_conduct <- function(package) {
   path <- package$path
   ok <- file.exists(file.path(path, "CONDUCT.md"))
   message_test(ok, "Packages should have a CONDUCT.md file")
-  ok
 }
 
 check_roxygen2 <- function(package) {
   ok <- !is.null(package$roxygennote)
   message_test(ok, "Packages should use roxygen2")
-  ok
 }
 
 message_test <- function(result, text) {
   if (!result) {
-    result <- crayon::red("x")
+    result_icon <- crayon::red("x")
   } else {
-    result <- crayon::green("\u2713")
+    result_icon <- crayon::green("\u2713")
   }
-  message("   ", result, " ", text)
+  message("   ", result_icon, " ", text)
+  result
 }
 
