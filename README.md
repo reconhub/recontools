@@ -84,7 +84,14 @@ recontools::check_package(run_gp = FALSE)
 #>    ✓ Packages should not import functions in NAMESPACE but use :: instead
 #>    ✓ Packages should have a NEWS.md file
 #>    ✓ Packages should have tests
+#>    ✓ Packages should use roxygen2
+#>    ✓ Packages should use snake case in exported functions
+#>    ✓ Packages should have a URL in the DESCRIPTION
+#>    ✓ Packages should have a URL for bugreports in the DESCRIPTION
+#>    ✓ Packages should have a docs folder or a gh-pages branch.
+#>    ✓ Packages should use travis CI for Linux/Mac testing
+#>    ✓ Packages should use appveyor CI for Windows testing
 #> 
 #> Consider fixing the issues identified above.
-#> However, your package is already wicked!
+#> However, your package is already bedazzling!
 ```
