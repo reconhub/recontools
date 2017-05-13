@@ -29,7 +29,9 @@ check_package <- function(path = ".", run_gp = FALSE) {
     check_news_file,
     check_tests,
     check_roxygen2,
-    check_snake_case
+    check_snake_case,
+    check_url,
+    check_bugreports
   )
   ok <- Reduce("&", Map(function(f) f(package), checks))
 
@@ -72,6 +74,23 @@ check_no_imports <- function(package) {
   } else {
     TRUE
   }
+}
+
+check_url <- function(package) {
+  ok <- !is.null(package$url) &&
+    length(package$url) == 1 &&
+    nchar(package$url) > 0
+  message_test(ok, "Packages should have a URL in the DESCRIPTION")
+  ok
+}
+
+check_bugreports <- function(package) {
+  ok <- !is.null(package$bugreports) &&
+    length(package$bugreports) == 1 &&
+    nchar(package$bugreports) > 0
+  msg <- "Packages should have a URL for bugreports in the DESCRIPTION"
+  message_test(ok, msg)
+  ok
 }
 
 check_news_file <- function(package) {
