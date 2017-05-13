@@ -23,17 +23,15 @@ check_package <- function(path = ".", run_gp = FALSE) {
   }
   message("Running RECON specific tests:")
 
-  ok <- check_at_least_one_markdown_vignette(package)
-
-  ok <- ok & check_no_imports(package)
-
-  ok <- ok & check_news_file(package)
-
-  ok <- ok & check_tests(package)
-
-  ok <- ok & check_roxygen2(package)
-
-  ok <- ok & check_snake_case(package)
+  checks <- list(
+    check_at_least_one_markdown_vignette,
+    check_no_imports,
+    check_news_file,
+    check_tests,
+    check_roxygen2,
+    check_snake_case
+  )
+  ok <- Reduce("&", Map(function(f) f(package), checks))
 
   message("")
   if (!ok) {
