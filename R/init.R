@@ -91,7 +91,7 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
     handle_answer <- function(x) {
       if (nchar(x) == 0) {
         message("* No answer given, calling vignette 'introduction'")
-        "introduction"
+        "introduction.Rmd"
       } else {
         x
       }
@@ -100,6 +100,10 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
                       ask("Please enter a name for the vignette:", type_fun = handle_answer))) {
 
     }
+    # remove ending .Rmd
+    vignette_name <- gsub(pattern = "\\.Rmd$",
+                          x = vignette_name,
+                          replacement = "", ignore.case = TRUE)
     if (!file.exists(file.path(path, "vignettes", paste0(vignette_name, ".Rmd")))) {
       devtools::use_vignette(vignette_name, pkg = path)
     } else {
