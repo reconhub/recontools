@@ -182,6 +182,6 @@ ask_yesno <- function(prompt, default = "y") {
   if (!interactive()) {
     return(TRUE)
   }
-  response <- tolower(ask(paste0(prompt, " [Y/N]:")))
+  response <- tolower(ask(paste0(prompt, " [Y/n]:")))
   (if (nchar(response) == 0) default else response) == "y"
 }
