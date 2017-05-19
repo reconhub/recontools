@@ -152,7 +152,8 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
     devtools::use_news_md(path)
   }
 
-  devtools::document(pkg = path)
+  message("* Running devtools::document")
+  suppressMessages(devtools::document(pkg = path))
 
   # compile readme if it exists
   readme_rmd_path <- file.path(path, "README.Rmd")
