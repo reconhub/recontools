@@ -16,15 +16,11 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
 
   # check if the name is already taken
   if (check_cran_name) {
-    repo_url <- getOption("repos")
-    repo_url <- repo_url[repo_url != "@CRAN@"]
-    if (length(repo_url) == 0) {
-      repo_url <- "https://cloud.r-project.org/"
-    }
+    repo_url <- c("CRAN" = "https://cloud.r-project.org/")
     available_packages <- utils::available.packages(repos = repo_url)
     name_on_cran <- pkg_name %in% available_packages[, "Package"]
     if (name_on_cran) {
-      stop("The package name", pkg_name, "is already taken on CRAN.
+      stop("The package name ", pkg_name, " is already taken on CRAN.
            Consider choosing a different name.", call. = FALSE)
     }
   }
@@ -201,6 +197,9 @@ create_dir <- function(path) {
 }
 
 ask <- function(prompt, type_fun = as.character) {
+  if (!interactive()) {
+    return(type_fun(""))
+  }
   type_fun(readline(prompt = paste0(prompt, " ")))
 }
 
