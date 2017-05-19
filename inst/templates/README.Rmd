@@ -17,7 +17,7 @@ install.packages("{pkg_name}")
 
 To benefit from the latest features and bug fixes, install the development, *github* version of the package using:
 ```{{r install2, eval = FALSE}}
-devtools::install_github("<github_username>/{pkg_name}")
+devtools::install_github("reconhub/{pkg_name}")
 ```
 
 Note that this requires the package *devtools* installed.
