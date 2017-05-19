@@ -42,17 +42,12 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   }
   path <- new_path
 
-  # check git
-  if (!git2r::in_repository(path)) {
-    message("* Initializing git repository")
-    git2r::init(path = path)
+  # add a default gitignore
+  message("* Add default .gitignore")
+  write_template("gitignore", path,
+                 list(pkg_name = pkg_name),
+                 local_name = ".gitignore")
 
-    # add a default gitignore
-    message("* Add default .gitignore")
-    write_template("gitignore", path,
-                   list(pkg_name = pkg_name),
-                   local_name = ".gitignore")
-  }
   file_exists <- function(file) {
     file.exists(file.path(path, file))
   }
