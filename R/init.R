@@ -153,6 +153,13 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
 
   devtools::document(pkg = path)
 
+  # compile readme if it exists
+  readme_rmd_path <- file.path(path, "README.Rmd")
+  if (file.exists(readme_rmd_path)) {
+    message("* Compile Readme.Rmd")
+    knitr::knit(readme_rmd_path, output = file.path(path, "README.md"))
+  }
+
   message("All done! ", praise::praise())
 }
 
