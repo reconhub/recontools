@@ -29,6 +29,19 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
     }
   }
 
+  # at this point we create a new foder with the name
+  new_path <- file.path(path, pkg_name)
+  if (dir.exists(new_path) && length(list.files(new_path)) > 0) {
+    stop("There already exists a non-empty directory with name ",
+         pkg_name, ". Please choose another name or remove the directory",
+         call. = FALSE)
+  } else {
+    if (!dir.exists(new_path)) {
+      dir.create(new_path)
+    }
+  }
+  path <- new_path
+
   # check git
   if (!git2r::in_repository(path)) {
     message("* Initializing git repository")
