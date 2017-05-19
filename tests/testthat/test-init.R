@@ -3,6 +3,7 @@ test_that("creates a default skeleton", {
   path <- new_tempdir()
   expect_message(init_package("mypackage", path))
   path <- file.path(path, "mypackage")
+  expect_exists(file.path(path, ".git"))
   expect_exists(file.path(path, "tests"))
   expect_exists(file.path(path, "tests", "testthat", "test-example.R"))
   expect_exists(file.path(path, "DESCRIPTION"))

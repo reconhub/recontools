@@ -42,6 +42,12 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   }
   path <- new_path
 
+  # create a git repository if there none in the path (or above)
+  if (!git2r::in_repository(path)) {
+    message("* Initializing git repository")
+    git2r::init(path = path)
+  }
+
   # add a default gitignore
   message("* Add default .gitignore")
   write_template("gitignore", path,
