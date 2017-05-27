@@ -94,5 +94,10 @@ recontools::check_package(run_gp = FALSE)
 #>    ✓ Packages should use appveyor CI for Windows testing
 #> 
 #> Consider fixing the issues identified above.
-#> However, your package is already stupendous!
+#> However, your package is already terrific!
 ```
+
+Inspiration
+-----------
+
+This package is inspired by the [goodpractice](https://github.com/MangoTheCat/goodpractice) and the [devtools](https://github.com/hadley/devtools) package. In particular it relies on many functions provided by the `devtools` package.

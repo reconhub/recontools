@@ -93,3 +93,6 @@ Currently, `check_package` does the following:
 recontools::check_package(run_gp = FALSE)
 ```
 
+## Inspiration
+
+This package is inspired by the [goodpractice](https://github.com/MangoTheCat/goodpractice) and the [devtools](https://github.com/hadley/devtools) package. In particular it relies on many functions provided by the `devtools` package.
