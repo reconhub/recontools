@@ -30,7 +30,7 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
     }
 
   # at this point we create a new foder with the name
-  new_path <- file.path(path, pkg_name)
+  new_path <- file.path(normalizePath(path), pkg_name)
   if (dir.exists(new_path) && length(list.files(new_path)) > 0) {
     stop("There already exists a non-empty directory with name ",
          pkg_name, ". Please choose another name or remove the directory",
@@ -166,6 +166,13 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
 
   message("* Running devtools::document")
   suppressMessages(devtools::document(pkg = path))
+
+  doc_path <- file.path(path, "docs")
+  if (!dir.exists(doc_path) &&
+      ask_yesno("Generate pkgdown website in docs folder?")) {
+    message("* Generate pkgdown website")
+    pkgdown::build_site(pkg = path, path = doc_path)
+  }
 
   # compile readme if it exists
   readme_rmd_path <- file.path(path, "README.Rmd")

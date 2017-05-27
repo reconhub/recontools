@@ -61,7 +61,8 @@ Please note that using `Rscript` creates all optional components (like the MIT l
 -   Adds appveyor (asks for it)
 -   Adds a default `.lintr` file
 -   Adds a `NEWS.md` file
--   Runs `devtools::document()` at the end
+-   Runs `devtools::document()`
+-   Creates a `pkgdown` `docs` folder
 
 ### Package checks
 
@@ -93,5 +94,5 @@ recontools::check_package(run_gp = FALSE)
 #>    ✓ Packages should use appveyor CI for Windows testing
 #> 
 #> Consider fixing the issues identified above.
-#> However, your package is already mind-blowing!
+#> However, your package is already stupendous!
 ```

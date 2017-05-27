@@ -72,7 +72,8 @@ Please note that using `Rscript` creates all optional components (like the MIT l
 * Adds appveyor (asks for it)
 * Adds a default `.lintr` file
 * Adds a `NEWS.md` file
-* Runs `devtools::document()` at the end
+* Runs `devtools::document()`
+* Creates a `pkgdown` `docs` folder
 
 ### Package checks
 

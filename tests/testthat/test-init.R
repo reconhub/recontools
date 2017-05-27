@@ -20,6 +20,7 @@ test_that("creates a default skeleton", {
   expect_exists(file.path(path, "NAMESPACE"))
   expect_exists(file.path(path, "NEWS.md"))
   expect_exists(file.path(path, "README.md"))
+  expect_exists(file.path(path, "docs", "index.html"))
 })
 
 test_that("check if name is already taken on CRAN", {
