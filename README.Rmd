@@ -67,7 +67,7 @@ Please note that using `Rscript` creates all optional components (like the MIT l
 * Adds `testthat` tests
 * Adds a code of conduct (from the `devtools` package)
 * Creates a default `README.Rmd`
-* Creates a sample vignette (using the `devtools` package)
+* Creates a sample vignette
 * Adds travis CI + codecov (asks for it)
 * Adds appveyor (asks for it)
 * Adds a default `.lintr` file

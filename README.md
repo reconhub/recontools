@@ -56,7 +56,7 @@ Please note that using `Rscript` creates all optional components (like the MIT l
 -   Adds `testthat` tests
 -   Adds a code of conduct (from the `devtools` package)
 -   Creates a default `README.Rmd`
--   Creates a sample vignette (using the `devtools` package)
+-   Creates a sample vignette
 -   Adds travis CI + codecov (asks for it)
 -   Adds appveyor (asks for it)
 -   Adds a default `.lintr` file
@@ -88,10 +88,10 @@ recontools::check_package(run_gp = FALSE)
 #>    ✓ Packages should use snake case in exported functions
 #>    ✓ Packages should have a URL in the DESCRIPTION
 #>    ✓ Packages should have a URL for bugreports in the DESCRIPTION
-#>    ✓ Packages should have a docs folder or a gh-pages branch.
+#>    x Packages should have a docs folder or a gh-pages branch.
 #>    ✓ Packages should use travis CI for Linux/Mac testing
 #>    ✓ Packages should use appveyor CI for Windows testing
 #> 
 #> Consider fixing the issues identified above.
-#> However, your package is already bedazzling!
+#> However, your package is already mind-blowing!
 ```
