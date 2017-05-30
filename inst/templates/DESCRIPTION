@@ -11,3 +11,4 @@ Suggests: testthat, roxygen2
 RoxygenNote: 6.0.1
 URL: https://github.com/reconhub/{pkg_name}
 BugReports: https://github.com/reconhub/{pkg_name}/issues
+VignetteBuilder: knitr
