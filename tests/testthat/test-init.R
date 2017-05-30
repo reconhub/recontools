@@ -20,7 +20,6 @@ test_that("creates a default skeleton", {
   expect_exists(file.path(path, "NAMESPACE"))
   expect_exists(file.path(path, "NEWS.md"))
   expect_exists(file.path(path, "README.md"))
-  expect_exists(file.path(path, "docs", "index.html"))
   expect_true(devtools::build_vignettes(path))
 })
 

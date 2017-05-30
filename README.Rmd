@@ -73,7 +73,6 @@ Please note that using `Rscript` creates all optional components (like the MIT l
 * Adds a default `.lintr` file
 * Adds a `NEWS.md` file
 * Runs `devtools::document()`
-* Creates a `pkgdown` `docs` folder
 
 ### Package checks
 
