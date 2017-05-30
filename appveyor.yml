@@ -15,11 +15,11 @@ environment:
     USE_RTOOLS: true
 
   matrix:
-  - R_VERSION: stable
+  #- R_VERSION: stable
 
   - R_VERSION: oldrel
 
-  - R_VERSION: devel
+  #- R_VERSION: devel
 
 build_script:
   - travis-tool.sh install_deps

@@ -26,7 +26,6 @@ test_that("creates a default skeleton", {
 
 test_that("check if name is already taken on CRAN", {
   path <- new_tempdir()
-  unlink(file.path(path, "*"), recursive = TRUE)
   expect_error(init_package("Rcpp", path))
 })
 

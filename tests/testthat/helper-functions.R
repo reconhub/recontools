@@ -4,7 +4,7 @@ expect_exists <- function(path) {
 
 # returns an empty tempdir
 new_tempdir <- function() {
-  path <- tempdir()
+  path <- normalizePath(tempdir())
   build_dir <- digest::sha1(paste0(Sys.time(), runif(1)))
   path <- file.path(path, build_dir)
   if (!dir.exists(path)) {
