@@ -9,7 +9,7 @@ test_that("creates a default skeleton", {
   expect_exists(file.path(path, "DESCRIPTION"))
   expect_exists(file.path(path, "R", "please-change.R"))
   expect_exists(file.path(path, "man", "hello_recon.Rd"))
-  expect_exists(file.path(path, "vignettes", "introduction.Rmd"))
+  expect_exists(file.path(path, "vignettes", "overview.Rmd"))
   expect_exists(file.path(path, "README.Rmd"))
   expect_exists(file.path(path, "CONDUCT.md"))
   expect_exists(file.path(path, ".travis.yml"))
@@ -20,6 +20,8 @@ test_that("creates a default skeleton", {
   expect_exists(file.path(path, "NAMESPACE"))
   expect_exists(file.path(path, "NEWS.md"))
   expect_exists(file.path(path, "README.md"))
+  expect_exists(file.path(path, "docs", "index.html"))
+  expect_true(devtools::build_vignettes(path))
 })
 
 test_that("check if name is already taken on CRAN", {

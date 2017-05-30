@@ -23,10 +23,10 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
       stop("The package name ", pkg_name, " is already taken on CRAN.
            Consider choosing a different name.", call. = FALSE)
     }
-  }
+    }
 
   # at this point we create a new foder with the name
-  new_path <- file.path(path, pkg_name)
+  new_path <- file.path(normalizePath(path), pkg_name)
   if (dir.exists(new_path) && length(list.files(new_path)) > 0) {
     stop("There already exists a non-empty directory with name ",
          pkg_name, ". Please choose another name or remove the directory",
@@ -86,8 +86,8 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   if (ask_yesno("Add a vignette?")) {
     handle_answer <- function(x) {
       if (nchar(x) == 0) {
-        message("* No answer given, calling vignette 'introduction'")
-        "introduction.Rmd"
+        message("* No answer given, calling vignette 'overview'")
+        "overview.Rmd"
       } else {
         x
       }
@@ -100,8 +100,16 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
     vignette_name <- gsub(pattern = "\\.Rmd$",
                           x = vignette_name,
                           replacement = "", ignore.case = TRUE)
-    if (!file.exists(file.path(path, "vignettes", paste0(vignette_name, ".Rmd")))) {
-      devtools::use_vignette(vignette_name, pkg = path)
+    vignette_path <- file.path(path, "vignettes")
+    vignette_file_name <- paste0(vignette_name, ".Rmd")
+    if (!file.exists(file.path(vignette_path, vignette_file_name))) {
+      message("* Add a vignette: ")
+      if (!dir.exists(vignette_path)) {
+        dir.create(vignette_path)
+      }
+      write_template("vignette.Rmd", vignette_path,
+                     list(pkg_name = pkg_name),
+                     local_name = vignette_file_name)
     } else {
       message("* Vignette with name '", vignette_name,
               "' already present => No new vignette created")
@@ -155,6 +163,13 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   message("* Running devtools::document")
   suppressMessages(devtools::document(pkg = path))
 
+  doc_path <- file.path(path, "docs")
+  if (!dir.exists(doc_path) &&
+      ask_yesno("Generate pkgdown website in docs folder?")) {
+    message("* Generate pkgdown website")
+    pkgdown::build_site(pkg = path, path = doc_path)
+  }
+
   # compile readme if it exists
   readme_rmd_path <- file.path(path, "README.Rmd")
   if (file.exists(readme_rmd_path)) {
@@ -163,7 +178,7 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   }
 
   message("All done! ", praise::praise())
-}
+  }
 
 write_template <- function(tpl_name, path,
                            parameters = list(),
