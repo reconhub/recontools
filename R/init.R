@@ -23,7 +23,7 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
       stop("The package name ", pkg_name, " is already taken on CRAN.
            Consider choosing a different name.", call. = FALSE)
     }
-    }
+  }
 
   # at this point we create a new foder with the name
   new_path <- file.path(normalizePath(path), pkg_name)
@@ -93,7 +93,8 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
       }
     }
     while(!valid_name(vignette_name <-
-                      ask("Please enter a name for the vignette:", type_fun = handle_answer))) {
+                      ask("Please enter a name for the vignette:",
+                          type_fun = handle_answer))) {
 
     }
     # remove ending .Rmd
@@ -166,8 +167,10 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   doc_path <- file.path(path, "docs")
   if (!dir.exists(doc_path) &&
       ask_yesno("Generate pkgdown website in docs folder?")) {
-    message("* Generate pkgdown website")
-    pkgdown::build_site(pkg = path, path = doc_path)
+    # pkgdown produces a .Rbuildignore in the current wd
+    # so for now we only print the command
+    message(crayon::bold("After setting up your package, call",
+            "`pkgdown::build_site()` in the package root."))
   }
 
   # compile readme if it exists
@@ -178,7 +181,7 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   }
 
   message("All done! ", praise::praise())
-  }
+}
 
 write_template <- function(tpl_name, path,
                            parameters = list(),
