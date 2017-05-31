@@ -180,7 +180,8 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
                          "`pkgdown::build_site()` in the package root."))
   }
 
-  message("All done! ", praise::praise())
+  message("All done! ",
+          praise::praise(template = "Your package will be ${adjective}!"))
 }
 
 write_template <- function(tpl_name, path,
