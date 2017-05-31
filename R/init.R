@@ -164,20 +164,20 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   message("* Running devtools::document")
   suppressMessages(devtools::document(pkg = path))
 
+  # compile readme if it exists
+  readme_rmd_path <- file.path(path, "README.Rmd")
+  if (file.exists(readme_rmd_path)) {
+    message("* Compile Readme.Rmd")
+    knitr::knit(readme_rmd_path, output = file.path(path, "README.md"))
+  }
+
   doc_path <- file.path(path, "docs")
   if (!dir.exists(doc_path) &&
       ask_yesno("Generate pkgdown website in docs folder?")) {
     # pkgdown produces a .Rbuildignore in the current wd
     # so for now we only print the command
     message(crayon::bold("After setting up your package, call",
-            "`pkgdown::build_site()` in the package root."))
-  }
-
-  # compile readme if it exists
-  readme_rmd_path <- file.path(path, "README.Rmd")
-  if (file.exists(readme_rmd_path)) {
-    message("* Compile Readme.Rmd")
-    knitr::knit(readme_rmd_path, output = file.path(path, "README.md"))
+                         "`pkgdown::build_site()` in the package root."))
   }
 
   message("All done! ", praise::praise())
