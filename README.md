@@ -4,8 +4,6 @@
 Tools to develop RECON packages
 ===============================
 
-This is currently work in progress.
-
 Installation
 ------------
 
@@ -26,7 +24,7 @@ What does it do?
 
 ### Package scaffolding
 
-When starting a new RECON package, you can use `init_package` to quickly create default package structure:
+When starting a new RECON package, you can use `init_package` to quickly create a default package structure:
 
 ``` r
 # from within your session
@@ -93,7 +91,7 @@ recontools::check_package(run_gp = FALSE)
 #>    ✓ Packages should use appveyor CI for Windows testing
 #> 
 #> Consider fixing the issues identified above.
-#> However, your package is already groovy!
+#> However, your package is already phenomenal!
 ```
 
 Inspiration

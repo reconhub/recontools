@@ -16,8 +16,6 @@ knitr::opts_chunk$set(
 
 # Tools to develop RECON packages
 
-This is currently work in progress.
-
 ## Installation
 
 ### CRAN
@@ -36,7 +34,7 @@ devtools::install_github("reconhub/recontools")
 
 ### Package scaffolding
 
-When starting a new RECON package, you can use `init_package` to quickly create default package structure:
+When starting a new RECON package, you can use `init_package` to quickly create a default package structure:
 
 ```{r, eval = FALSE}
 # from within your session
@@ -54,6 +52,7 @@ In case you want to create a new package from the command line, run:
 ```
 Rscript -e "recontools::init_package('mynewpackage')"
 ```
+
 Please note that using `Rscript` creates all optional components (like the MIT license) without asking.
 
 `init_package` currently does the following:
