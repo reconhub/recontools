@@ -17,7 +17,7 @@ check_package <- function(path = ".", run_gp = FALSE) {
       }
     } else {
       message("Please consider installing `goodpractice`")
-      message("devtools::install_github('MangoTheCat/goodpractice')")
+      message("remotes::install_github('MangoTheCat/goodpractice')")
     }
     message("")
   }
@@ -68,7 +68,7 @@ check_at_least_one_markdown_vignette <- function(package) {
 check_no_imports <- function(package) {
   path <- package$path
   if (file.exists(file.path(path, "NAMESPACE"))) {
-    ns <- devtools::parse_ns_file(package)
+    ns <- parseNamespaceFile(basename(path), dirname(path), mustExist = FALSE)
     ok <- length(ns$imports) == 0
     message_test(ok, paste0("Packages should not import ",
                             "functions in NAMESPACE but use :: instead"))
@@ -103,7 +103,7 @@ check_snake_case <- function(package) {
   path <- package$path
   ok <- file.exists(file.path(path, "NAMESPACE"))
   if (ok) {
-    ns <- devtools::parse_ns_file(package)
+    ns <- parseNamespaceFile(basename(path), dirname(path), mustExist = FALSE)
     ok <- !any(grepl(x = ns$exports, pattern = ".", fixed = TRUE))
   }
   message_test(ok, "Packages should use snake case in exported functions")
