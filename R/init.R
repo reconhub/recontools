@@ -144,7 +144,9 @@ init_package <- function(pkg_name, your_name = getOption("usethis.full_name"), p
   # code of conduct
   if (!file_exists("CONDUCT.md")) {
     message("* Add CONDUCT.md from devtools")
-    suppressMessages(usethis::use_code_of_conduct(path = path))
+    usethis::with_project(path, {
+      usethis::use_code_of_conduct()
+    })
   }
 
   # create readme
