@@ -17,9 +17,9 @@ init_package <- function(pkg_name, your_name = getOption("usethis.full_name"), p
   if (is.null(your_name)) {
     message("Please type your full name:")
     your_name <- readLines(n = 1L)
-    if (your_name == "") {
-      stop("You must provide your name.")
-    }
+    # if (your_name == "") {
+    #   stop("You must provide your name.")
+    # }
     options(usethis.full_name = your_name)
   }
   stopifnot(dir.exists(path))
@@ -91,9 +91,7 @@ init_package <- function(pkg_name, your_name = getOption("usethis.full_name"), p
 
   if (!file_exists("LICENSE") &&
       ask_yesno("Add MIT license?")) {
-    usethis::with_project(path, {
-        usethis::use_mit_license()
-    }, quiet = TRUE)
+        usethis::use_mit_license(usethis::proj_set(path))
   }
 
   if (ask_yesno("Add a vignette?")) {
@@ -133,9 +131,7 @@ init_package <- function(pkg_name, your_name = getOption("usethis.full_name"), p
   # create tests
   if (!dir.exists(file.path(path, "tests"))) {
     message("* Add testthat")
-    usethis::with_project(path, {
       usethis::use_testthat()
-    }, quiet = TRUE)
     write_template("test-example.R",
                    path = file.path(path, "tests", "testthat"),
                    use_glue = FALSE)
@@ -144,9 +140,7 @@ init_package <- function(pkg_name, your_name = getOption("usethis.full_name"), p
   # code of conduct
   if (!file_exists("CONDUCT.md")) {
     message("* Add CONDUCT.md from devtools")
-    usethis::with_project(path, {
-      usethis::use_code_of_conduct()
-    })
+#      write_template("CONDUCT.md", path, list(pkg_name = pkg_name))
   }
 
   # create readme
@@ -175,9 +169,9 @@ init_package <- function(pkg_name, your_name = getOption("usethis.full_name"), p
   }
 
   if (!file_exists("NEWS.md")) {
-    usethis::with_project(path, {
+#    usethis::with_project(path, {
       usethis::use_news_md(open = FALSE)
-    })
+#    })
   }
 
   message("* Running devtools::document")
