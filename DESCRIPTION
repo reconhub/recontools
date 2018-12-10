@@ -3,7 +3,8 @@ Title: Tools for RECON Package Development
 Version: 0.0.0.9000
 Authors@R: c(
   person("Dirk", "Schumacher", email = "mail@dirk-schumacher.net", role = c("aut", "cre")),
-  person("Zhian N.", "Kamvar", email = "zkamvar@gmail.com", role = c("ctb")))
+  person("Zhian N.", "Kamvar", email = "zkamvar@gmail.com", role = c("ctb")), 
+  person("Juliet R.C.", "Pulliam", email = "pulliam@sun.ac.za", role = c("ctb")))
 Description: Just that.
 Depends: R (>= 3.2.0)
 License: GPL-3

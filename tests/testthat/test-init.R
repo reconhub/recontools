@@ -12,7 +12,7 @@ test_that("creates a default skeleton", {
   expect_exists(file.path(path, "man", "hello_recon.Rd"))
   expect_exists(file.path(path, "vignettes", "overview.Rmd"))
   expect_exists(file.path(path, "README.Rmd"))
-  expect_exists(file.path(path, "CONDUCT.md"))
+  expect_exists(file.path(path, "CODE_OF_CONDUCT.md"))
   expect_exists(file.path(path, ".travis.yml"))
   expect_exists(file.path(path, "appveyor.yml"))
   expect_exists(file.path(path, ".lintr"))
