@@ -4,10 +4,15 @@
 \alias{init_package}
 \title{Initializes a new package}
 \usage{
-init_package(pkg_name, path = ".", check_cran_name = TRUE)
+init_package(pkg_name, your_name = getOption("usethis.full_name"),
+  path = ".", check_cran_name = TRUE)
 }
 \arguments{
 \item{pkg_name}{the package name}
+
+\item{your_name}{your name. This defaults to the `usethis.full_name` option.
+if this is NULL, then you will be prompted to type your name, which will
+then be stored as the `usethis.full_name` option.}
 
 \item{path}{the directory path. Default is the current directory}
 

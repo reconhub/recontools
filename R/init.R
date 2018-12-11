@@ -1,15 +1,26 @@
 #' Initializes a new package
 #' @param pkg_name the package name
+#' @param your_name your name. This defaults to the `usethis.full_name` option.
+#'   if this is NULL, then you will be prompted to type your name, which will
+#'   then be stored as the `usethis.full_name` option.
 #' @param path the directory path. Default is the current directory
 #' @param check_cran_name check if the name is already taken on CRAN
 #' @export
-init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
+init_package <- function(pkg_name, your_name = getOption("usethis.full_name"), path = ".", check_cran_name = TRUE) {
   if (length(pkg_name) != 1 || !is.character(pkg_name)) {
     stop("Package name needs to be a character vector of length 1",
          call. = FALSE)
   }
   if (!valid_name(pkg_name)) {
     stop("Package name is not valid", call. = FALSE)
+  }
+  if (is.null(your_name)) {
+    message("Please type your full name:")
+    your_name <- readLines(n = 1L)
+    # if (your_name == "") {
+    #   stop("You must provide your name.")
+    # }
+    options(usethis.full_name = your_name)
   }
   stopifnot(dir.exists(path))
   stopifnot(is.logical(check_cran_name), length(check_cran_name) == 1)
@@ -80,7 +91,7 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
 
   if (!file_exists("LICENSE") &&
       ask_yesno("Add MIT license?")) {
-    devtools::use_mit_license(path)
+        usethis::use_mit_license(usethis::proj_set(path))
   }
 
   if (ask_yesno("Add a vignette?")) {
@@ -120,7 +131,7 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   # create tests
   if (!dir.exists(file.path(path, "tests"))) {
     message("* Add testthat")
-    suppressMessages(devtools::use_testthat(pkg = path))
+      usethis::use_testthat()
     write_template("test-example.R",
                    path = file.path(path, "tests", "testthat"),
                    use_glue = FALSE)
@@ -129,7 +140,7 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   # code of conduct
   if (!file_exists("CONDUCT.md")) {
     message("* Add CONDUCT.md from devtools")
-    suppressMessages(devtools::use_code_of_conduct(pkg = path))
+    usethis::use_code_of_conduct()
   }
 
   # create readme
@@ -158,7 +169,9 @@ init_package <- function(pkg_name, path = ".", check_cran_name = TRUE) {
   }
 
   if (!file_exists("NEWS.md")) {
-    devtools::use_news_md(path)
+#    usethis::with_project(path, {
+      usethis::use_news_md(open = FALSE)
+#    })
   }
 
   message("* Running devtools::document")

@@ -52,7 +52,7 @@ Please note that using `Rscript` creates all optional components (like the MIT l
 -   Creates a default `DESCRIPTION` file
 -   Adds an MIT License (asks for it)
 -   Adds `testthat` tests
--   Adds a code of conduct (from the `devtools` package)
+-   Adds a code of conduct (from the `usethis` package)
 -   Creates a default `README.Rmd`
 -   Creates a sample vignette
 -   Adds travis CI + codecov (asks for it)

@@ -1,16 +1,18 @@
 Package: recontools
 Title: Tools for RECON Package Development
 Version: 0.0.0.9000
-Authors@R: person("Dirk", "Schumacher", email = "mail@dirk-schumacher.net", role = c("aut", "cre"))
+Authors@R: c(
+  person("Dirk", "Schumacher", email = "mail@dirk-schumacher.net", role = c("aut", "cre")),
+  person("Zhian N.", "Kamvar", email = "zkamvar@gmail.com", role = c("ctb")), 
+  person("Juliet R.C.", "Pulliam", email = "pulliam@sun.ac.za", role = c("ctb")))
 Description: Just that.
 Depends: R (>= 3.2.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Suggests: roxygen2, testthat, covr, goodpractice, digest, rmarkdown, pkgdown
-Imports: devtools, git2r, readr, 
+Imports: usethis, devtools, git2r, readr, 
   glue, praise, utils, crayon, knitr
-Remotes: MangoTheCat/goodpractice, hadley/pkgdown
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 URL: https://github.com/reconhub/recontools
 BugReports: https://github.com/reconhub/recontools/issues
